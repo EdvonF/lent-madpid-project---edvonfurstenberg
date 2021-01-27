@@ -153,4 +153,4 @@ ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`</field><data>{"commentRefs":[],"fieldData":{"img":"myImages.image3"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="ar:$,?tPn9ZuZq$hm|_-"><field name="MEMBER">Enemy</field></shadow></value></block></value></block></statement></block></next></block></statement></block></xml>
+`</field><data>{"commentRefs":[],"fieldData":{"img":"myImages.image3"}}</data></shadow></value><value name="kind"><shadow type="spritekind" id="ar:$,?tPn9ZuZq$hm|_-"><field name="MEMBER">Enemy</field></shadow></value></block></value></block></statement></block></next></block></statement></block><block type="arcade_game_reset" id="vsIhsV}I1FN$bIN^/d$e" disabled="true" x="410" y="470"/></xml>

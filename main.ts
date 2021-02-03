@@ -1,46 +1,4 @@
-info.onCountdownEnd(function () {
-    info.startCountdown(10)
-    for (let index = 0; index < 1e+23; index++) {
-        myEnemy = sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . 1 f . . . . . . . . 
-            . . . f f 1 1 f 1 . . . . . . . 
-            . . f f f f 1 f f 1 . . . . . . 
-            . . 1 1 f f f 1 f f . . . . . . 
-            . . 1 1 f 1 f f 1 1 1 . . . . . 
-            . . f f f f 1 1 f f 1 . . . . . 
-            . . f f 1 1 f f 1 f 1 . . . . . 
-            . . . f 1 f f f f f . . . . . . 
-            . . . 1 f 1 1 1 1 f . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            `, SpriteKind.Enemy)
-    }
-})
-let myEnemy: Sprite = null
-let mySprite = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . 1 1 . . . . . . . . . . . . . 
-    . 1 1 1 . . . . . . . . . . . . 
-    . 1 8 1 1 1 1 1 1 1 1 1 1 . . . 
-    . 1 2 8 1 1 1 1 1 1 1 1 f f . . 
-    . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
-    . 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-    . . . . 1 1 1 1 . . . . . . . . 
-    . . . . 1 1 1 . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player)
-controller.moveSprite(mySprite, 10, 175)
+let projectile: Sprite = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -163,3 +121,45 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
+let mySprite = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . 1 1 . . . . . . . . . . . . . 
+    . 1 1 1 . . . . . . . . . . . . 
+    . 1 8 1 1 1 1 1 1 1 1 1 1 . . . 
+    . 1 2 8 1 1 1 1 1 1 1 1 f f . . 
+    . 1 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
+    . 1 1 1 1 1 1 1 1 1 1 1 1 1 . . 
+    . . . . 1 1 1 1 . . . . . . . . 
+    . . . . 1 1 1 . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+controller.moveSprite(mySprite, 175, 175)
+mySprite.setStayInScreen(true)
+info.setScore(0)
+info.setLife(3)
+game.onUpdateInterval(5000, function () {
+    projectile = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . 2 . 2 2 2 2 f f . . . . . 
+        . . . . 2 2 . . 2 f . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . 2 2 2 2 2 2 . . . . . . 
+        . . . . 2 2 2 2 2 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, 50, 50)
+})

@@ -1,4 +1,20 @@
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.confetti, 100)
+    music.baDing.play()
+    info.changeScoreBy(1)
+})
+info.onLifeZero(function () {
+    game.over(false, effects.slash)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.disintegrate, 100)
+    music.pewPew.play()
+    Asteroids.setVelocity(100, 100)
+    info.changeScoreBy(-1)
+    info.changeLifeBy(-1)
+})
 let projectile: Sprite = null
+let Asteroids: Sprite = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -139,7 +155,7 @@ let mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite, 175, 175)
+controller.moveSprite(mySprite, 125, 125)
 mySprite.setStayInScreen(true)
 info.setScore(0)
 info.setLife(3)
@@ -161,5 +177,24 @@ game.onUpdateInterval(5000, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, 50, 50)
+        `, randint(-50, 50), randint(-50, 50))
+    Asteroids = sprites.createProjectileFromSide(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 5 5 5 . . . . . . . 
+        . . . 5 5 5 5 5 5 5 5 . . . . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . 5 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . 5 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . 5 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . . 5 5 5 5 5 5 5 5 5 . . . . 
+        . . . . . . 5 5 5 5 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, randint(-50, 50), randint(-50, 50))
+    Asteroids.setKind(SpriteKind.Enemy)
 })
